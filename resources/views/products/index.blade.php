@@ -32,8 +32,9 @@
                                     <td class="text-right">{{ $product->stock }}</td>
                                     <td class="d-flex justify-content-center">
                                         <a class="btn btn-success btn-sm mx-1" href="{{ route('products.show', ['product' => $product->id ]) }}">{{ __('Detail') }}</a>
-                                        <a class="btn btn-info btn-sm mx-1 text-white" href="{{ route('products.update', ['product' => $product->id ]) }}">{{ __('Edit') }}</a>
-                                        <a class="btn btn-danger btn-sm mx-1" href="{{ route('products.delete', ['product' => $product->id ]) }}">{{ __('Delete') }}</a>
+                                        <a class="btn btn-info btn-sm mx-1 text-white" href="{{ route('products.edit', ['product' => $product->id ]) }}">{{ __('Edit') }}</a>
+                                        <a class="btn btn-danger btn-sm mx-1">{{ __('Delete') }}</a>
+                                        {{-- <a tabindex="0" class="btn btn-sm btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a> --}}
                                     </td>
                                 </tr>
                             @empty

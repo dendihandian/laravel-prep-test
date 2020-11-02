@@ -12,6 +12,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(10);
+
         return view('products.index', compact('products'));
     }
 
@@ -23,23 +24,38 @@ class ProductController extends Controller
     public function store(ProductStore $request)
     {
         Product::create($request->only(['title', 'description', 'price', 'stock']));
+
         $request->session()->flash('success', __('Product created'));
         return redirect()->route('products.index');
     }
     
     public function show($productId)
     {
-        return view('products.show', compact('productId'));
+        $product = Product::find($productId);
+
+        return view('products.show', compact('product'));
     }
 
-    public function edit()
+    public function edit($productId)
     {
-        return view('products.edit');
+        $product = Product::find($productId);
+
+        return view('products.edit', compact('product'));
     }
 
     public function update(ProductUpdate $request, $productId)
     {
-        return 'update ' . $productId;
+        $params = $request->only(['title', 'description', 'price', 'stock']);
+
+        $product = Product::find($productId);
+        $product->title = $params['title'];
+        $product->description = $params['description'];
+        $product->price = $params['price'];
+        $product->stock = $params['stock'];
+        $product->save();
+
+        $request->session()->flash('success', __('Product updated'));
+        return redirect()->back();
     }
 
     public function delete($productId)
