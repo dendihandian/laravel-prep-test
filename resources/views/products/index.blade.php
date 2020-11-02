@@ -44,6 +44,10 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="card-footer d-flex align-items-center justify-content-end">
+                    {{ $products->links() }}
+                </div>
             </div>
         </div>
     </div>
