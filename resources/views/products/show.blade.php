@@ -13,7 +13,7 @@
 
                 <div class="card-body">
 
-                    @include('products.form')
+                    @include('products.form', ['readOnly' => true])
 
                     <a class="btn btn-info text-white" href="{{ route('products.index') }}">{{ __('Back to list') }}</a>
                     <a class="btn btn-success" href="{{ route('products.edit', ['product' => $product->id ?? '']) }}">{{ __('Edit') }}</a>
