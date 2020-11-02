@@ -72,6 +72,8 @@
             </div>
         </nav>
 
+        @include('components.flash')
+
         <main class="py-4">
             @yield('content')
         </main>

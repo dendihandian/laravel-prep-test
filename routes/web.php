@@ -15,19 +15,19 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', function () {
-    return redirect()->to('/products');
+    return redirect()->route('products.index');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('products')->group(function(){
-    Route::get('/', [ProductController::class, 'index']);
-    Route::get('/create', [ProductController::class, 'create']);
-    Route::post('/', [ProductController::class, 'store']);
-    Route::get('/{product}', [ProductController::class, 'show']);
-    Route::get('/{product}/edit', [ProductController::class, 'edit']);
-    Route::patch('/{product}', [ProductController::class, 'update']);
-    Route::delete('/{product}', [ProductController::class, 'delete']);
+Route::prefix('products')->name('products.')->group(function(){
+    Route::get('/', [ProductController::class, 'index'])->name('index');
+    Route::get('/create', [ProductController::class, 'create'])->name('create');
+    Route::post('/', [ProductController::class, 'store'])->name('store');
+    Route::get('/{product}', [ProductController::class, 'show'])->name('show');
+    Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('edit');
+    Route::patch('/{product}', [ProductController::class, 'update'])->name('update');
+    Route::delete('/{product}', [ProductController::class, 'delete'])->name('delete');
 });

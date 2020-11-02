@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Http\Requests\ProductStore;
+use App\Http\Requests\ProductUpdate;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        return view('products.index');
+        $products = Product::paginate();
+        return view('products.index', compact('products'));
     }
 
     public function create()
@@ -17,9 +20,11 @@ class ProductController extends Controller
         return view('products.create');
     }
     
-    public function store(Request $request)
+    public function store(ProductStore $request)
     {
-        return 'store';
+        Product::create($request->only(['title', 'description', 'price', 'stock']));
+        $request->session()->flash('success', __('Product created'));
+        return redirect()->route('products.index');
     }
     
     public function show($productId)
@@ -32,7 +37,7 @@ class ProductController extends Controller
         return view('products.edit');
     }
 
-    public function update(Request $request, $productId)
+    public function update(ProductUpdate $request, $productId)
     {
         return 'update ' . $productId;
     }
