@@ -18,8 +18,10 @@
 
                         @include('products.form')
 
-                        <a class="btn btn-info text-white" href="{{ route('products.index') }}">{{ __('Back to list') }}</a>
-                        <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+                        <div class="mt-4">
+                            <a class="btn btn-info text-white" href="{{ route('products.index') }}">{{ __('Back to list') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+                        </div>
                     </form>
                 </div>
             </div>

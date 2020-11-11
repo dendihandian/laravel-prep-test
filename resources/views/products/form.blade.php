@@ -34,7 +34,7 @@
     <div class="col-6">
         <div class="form-group">
             <label for="priceInput">{{ __('Product Price') }}</label>
-            <input class="form-control" name="price" type="number" value="{{ old('price') ?? ($product->price ?? 0) }}" min="0" max="1000" id="priceInput" aria-describedby="priceHelp" @if ($readOnly) readonly @endif>
+            <input class="form-control w-50" name="price" type="number" value="{{ old('price') ?? ($product->price ?? 0) }}" min="0" max="1000" id="priceInput" aria-describedby="priceHelp" @if ($readOnly) readonly @endif>
             @if ($errors->has('price'))
                 <div class="validation-messages">
                     <ul>
@@ -49,7 +49,7 @@
     <div class="col-6">
         <div class="form-group">
             <label for="stockInput">{{ __('Product Stock') }}</label>
-            <input class="form-control" name="stock" type="number" value="{{ old('stock') ?? ($product->stock ?? 0) }}" min="0" max="99" id="stockInput" aria-describedby="stockHelp" @if ($readOnly) readonly @endif>
+            <input class="form-control w-50" name="stock" type="number" value="{{ old('stock') ?? ($product->stock ?? 0) }}" min="0" max="99" id="stockInput" aria-describedby="stockHelp" @if ($readOnly) readonly @endif>
             @if ($errors->has('stock'))
                 <div class="validation-messages">
                     <ul>

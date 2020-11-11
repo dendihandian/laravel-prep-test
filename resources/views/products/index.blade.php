@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <span>
@@ -15,21 +15,21 @@
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-sm">
+                    <table class="table table-sm table-bordered">
                         <thead>
                             <tr>
-                                <th class="text-left" scope="col">Title</th>
-                                <th class="text-right" scope="col" width="5%">Price</th>
-                                <th class="text-right" scope="col" width="5%">Stock</th>
-                                <th class="text-center" scope="col" width="20%">Action</th>
+                                <th class="text-left px-2" scope="col">Title</th>
+                                <th class="text-right px-2" scope="col" width="8%">Price</th>
+                                <th class="text-right px-2" scope="col" width="8%">Stock</th>
+                                <th class="text-center" scope="col" width="25%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($products as $product)
                                 <tr>
-                                    <td class="text-left">{{ $product->title }}</td>
-                                    <td class="text-right">{{ $product->price }}</td>
-                                    <td class="text-right">{{ $product->stock }}</td>
+                                    <td class="text-left px-2 align-middle">{{ $product->title }}</td>
+                                    <td class="text-right align-middle px-2">{{ $product->price }}</td>
+                                    <td class="text-right align-middle px-2">{{ $product->stock }}</td>
                                     <td class="d-flex justify-content-center">
                                         <a class="btn btn-success btn-sm mx-1" href="{{ route('products.show', ['product' => $product->id ]) }}">{{ __('Detail') }}</a>
                                         <a class="btn btn-info btn-sm mx-1 text-white" href="{{ route('products.edit', ['product' => $product->id ]) }}">{{ __('Edit') }}</a>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <span>
@@ -18,8 +18,10 @@
 
                         @include('products.form')
 
-                        <a class="btn btn-info text-white" href="{{ route('products.index') }}">{{ __('Back to list') }}</a>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <div class="mt-4">
+                            <a class="btn btn-info text-white" href="{{ route('products.index') }}">{{ __('Back to list') }}</a>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
                     </form>
                 </div>
             </div>

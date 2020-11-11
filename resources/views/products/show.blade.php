@@ -15,9 +15,11 @@
 
                     @include('products.form', ['readOnly' => true])
 
-                    <a class="btn btn-info text-white" href="{{ route('products.index') }}">{{ __('Back to list') }}</a>
-                    <a class="btn btn-success" href="{{ route('products.edit', ['product' => $product->id ?? '']) }}">{{ __('Edit') }}</a>
-                    <a class="btn btn-danger" href="{{ route('products.delete', ['product' => $product->id ?? '']) }}">{{ __('Delete') }}</a>
+                    <div class="mt-4">
+                        <a class="btn btn-info text-white" href="{{ route('products.index') }}">{{ __('Back to list') }}</a>
+                        <a class="btn btn-success" href="{{ route('products.edit', ['product' => $product->id ?? '']) }}">{{ __('Edit') }}</a>
+                        <a class="btn btn-danger" href="{{ route('products.delete', ['product' => $product->id ?? '']) }}">{{ __('Delete') }}</a>
+                    </div>
                 </div>
             </div>
         </div>
