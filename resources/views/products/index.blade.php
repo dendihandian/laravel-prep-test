@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <span>
@@ -33,7 +33,11 @@
                                     <td class="d-flex justify-content-center">
                                         <a class="btn btn-success btn-sm mx-1" href="{{ route('products.show', ['product' => $product->id ]) }}">{{ __('Detail') }}</a>
                                         <a class="btn btn-info btn-sm mx-1 text-white" href="{{ route('products.edit', ['product' => $product->id ]) }}">{{ __('Edit') }}</a>
-                                        <a class="btn btn-danger btn-sm mx-1">{{ __('Delete') }}</a>
+                                        <a class="btn btn-danger btn-sm mx-1" onclick="deleteConfirm('delete-product-{{ $product->id }}', 'Do you want to delete {{ $product->title }} ?')">{{ __('Delete') }}</a>
+                                        <form method="POST" id="delete-product-{{ $product->id }}" action="{{ route('products.delete', ['product' => $product->id]) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
                                         {{-- <a tabindex="0" class="btn btn-sm btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a> --}}
                                     </td>
                                 </tr>

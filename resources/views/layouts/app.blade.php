@@ -77,10 +77,5 @@
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script>
-        $(function () {
-            $('[data-toggle="popover"]').popover()
-        });
-    </script>
 </body>
 </html>

@@ -20,7 +20,7 @@ class ProductController extends Controller
     {
         return view('products.create');
     }
-    
+
     public function store(ProductStore $request)
     {
         Product::create($request->only(['title', 'description', 'price', 'stock']));
@@ -28,7 +28,7 @@ class ProductController extends Controller
         $request->session()->flash('success', __('Product created'));
         return redirect()->route('products.index');
     }
-    
+
     public function show($productId)
     {
         $product = Product::find($productId);
@@ -58,8 +58,14 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function delete($productId)
+    public function delete(Request $request, $productId)
     {
-        return 'delete ' . $productId;
+        $product = Product::find($productId);
+        if ($product) $product->delete();
+        $request->session()->flash('success', __('Product deleted'));
+
+        if ($request->has('redirect_to_index')) return redirect()->route('products.index');
+
+        return redirect()->back();
     }
 }
