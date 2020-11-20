@@ -21,7 +21,7 @@
                                 <th class="text-left px-2" scope="col">Title</th>
                                 <th class="text-right px-2" scope="col" width="8%">Price</th>
                                 <th class="text-right px-2" scope="col" width="8%">Stock</th>
-                                <th class="text-center" scope="col" width="25%">Action</th>
+                                <th class="text-center" scope="col" width="15%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,9 +31,9 @@
                                     <td class="text-right align-middle px-2">{{ $product->price }}</td>
                                     <td class="text-right align-middle px-2">{{ $product->stock }}</td>
                                     <td class="d-flex justify-content-center">
-                                        <a class="btn btn-success btn-sm mx-1" href="{{ route('products.show', ['product' => $product->id ]) }}">{{ __('Detail') }}</a>
-                                        <a class="btn btn-info btn-sm mx-1 text-white" href="{{ route('products.edit', ['product' => $product->id ]) }}">{{ __('Edit') }}</a>
-                                        <a class="btn btn-danger btn-sm mx-1" onclick="deleteConfirm('delete-product-{{ $product->id }}', 'Do you want to delete {{ $product->title }} ?')">{{ __('Delete') }}</a>
+                                        <a class="mx-1 text-success" href="{{ route('products.show', ['product' => $product->id ]) }}"><i class="fas fa-eye"></i></a>
+                                        <a class="mx-1 text-info" href="{{ route('products.edit', ['product' => $product->id ]) }}"><i class="fas fa-edit"></i></a>
+                                        <a class="mx-1 text-danger" href="#" onclick="deleteConfirm('delete-product-{{ $product->id }}', 'Do you want to delete {{ $product->title }} ?')"><i class="fas fa-trash"></i></a>
                                         <form method="POST" id="delete-product-{{ $product->id }}" action="{{ route('products.delete', ['product' => $product->id]) }}">
                                             @csrf
                                             @method('DELETE')

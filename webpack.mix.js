@@ -12,9 +12,13 @@ const mix = require('laravel-mix');
  */
 
 mix
-    .autoload({
-        jquery: ['$', 'window.jQuery',"jQuery","window.$","jquery","window.jquery"],
-        'popper.js/dist/umd/popper.js': ['Popper']
-    })
+    // .autoload({
+    //     jquery: ['$', 'window.jQuery',"jQuery","window.$","jquery","window.jquery"],
+    //     'popper.js/dist/umd/popper.js': ['Popper']
+    // })
     .js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .copy(
+        "node_modules/@fortawesome/fontawesome-free/webfonts",
+        "public/webfonts"
+    );
