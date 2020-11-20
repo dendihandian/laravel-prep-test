@@ -43,15 +43,12 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td>{{ __('No product available') }}</td>
+                                    <td class="text-center" colspan="4">{{ __('No product available') }}</td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
-                </div>
-
-                <div class="card-footer d-flex align-items-center justify-content-end">
-                    {{ $products->links() }}
+                    <div class="d-flex align-items-center justify-content-end">{{ $products->links() }}</div>
                 </div>
             </div>
         </div>
