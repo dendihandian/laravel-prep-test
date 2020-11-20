@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Requests\ProductStore;
 use App\Http\Requests\ProductUpdate;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -23,7 +24,10 @@ class ProductController extends Controller
 
     public function store(ProductStore $request)
     {
-        Product::create($request->only(['title', 'description', 'price', 'stock']));
+        $params = $request->only(['title', 'description', 'price', 'stock']);
+        $params['user_id'] = Auth::user()->id ?? null;
+
+        Product::create(params);
 
         $request->session()->flash('success', __('Product created'));
         return redirect()->route('products.index');
@@ -52,6 +56,7 @@ class ProductController extends Controller
         $product->description = $params['description'];
         $product->price = $params['price'];
         $product->stock = $params['stock'];
+        $product->user_id = Auth::user()->id ?? null;
         $product->save();
 
         $request->session()->flash('success', __('Product updated'));
@@ -67,5 +72,16 @@ class ProductController extends Controller
         if ($request->has('redirect_to_index')) return redirect()->route('products.index');
 
         return redirect()->back();
+    }
+
+    public function factory(Request $request, $count)
+    {
+        $request->session()->flash('success', __('Product generated'));
+
+        Product::factory([
+            'user_id' => Auth::user()->id ?? null
+        ])->count($count)->create();
+
+        return redirect()->route('products.index');
     }
 }

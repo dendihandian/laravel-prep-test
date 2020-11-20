@@ -30,4 +30,6 @@ Route::prefix('products')->name('products.')->middleware('auth')->group(function
     Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('edit');
     Route::patch('/{product}', [ProductController::class, 'update'])->name('update');
     Route::delete('/{product}', [ProductController::class, 'delete'])->name('delete');
+
+    Route::get('/factory/{count}', [ProductController::class, 'factory'])->name('factory');
 });
