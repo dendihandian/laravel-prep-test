@@ -6,7 +6,8 @@ window.deleteConfirm = function(formId, text)
         icon: 'warning',
         text: text,
         showCancelButton: true,
-        confirmButtonText: `Delete`,
+        confirmButtonText: 'Delete',
+        confirmButtonColor: '#e3342f',
     }).then((result) => {
         if (result.isConfirmed) {
             document.getElementById(formId).submit();
