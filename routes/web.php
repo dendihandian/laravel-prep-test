@@ -24,12 +24,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('products')->name('products.')->middleware('auth')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('index');
-    Route::get('/create', [ProductController::class, 'create'])->name('create');
     Route::post('/', [ProductController::class, 'store'])->name('store');
-    Route::get('/{product}', [ProductController::class, 'show'])->name('show');
-    Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('edit');
-    Route::patch('/{product}', [ProductController::class, 'update'])->name('update');
-    Route::delete('/{product}', [ProductController::class, 'delete'])->name('delete');
-
+    Route::get('/create', [ProductController::class, 'create'])->name('create');
     Route::get('/factory/{count}', [ProductController::class, 'factory'])->name('factory');
+
+    Route::prefix('{product}')->group(function () {
+        Route::get('/', [ProductController::class, 'show'])->name('show');
+        Route::patch('/', [ProductController::class, 'update'])->name('update');
+        Route::delete('/', [ProductController::class, 'delete'])->name('delete');
+        Route::get('/edit', [ProductController::class, 'edit'])->name('edit');
+    });
 });
