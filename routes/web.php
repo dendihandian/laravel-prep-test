@@ -26,9 +26,11 @@ Route::prefix('products')->name('products.')->middleware('auth')->group(function
     Route::get('/', [ProductController::class, 'index'])->name('index');
     Route::post('/', [ProductController::class, 'store'])->name('store');
     Route::get('/create', [ProductController::class, 'create'])->name('create');
+    Route::get('/table', [ProductController::class, 'table'])->name('table');
+    Route::get('/datatable', [ProductController::class, 'datatable'])->name('datatable');
     Route::get('/factory/{count}', [ProductController::class, 'factory'])->name('factory');
 
-    Route::prefix('{product}')->group(function () {
+    Route::prefix('{product}')->middleware('product_owner')->group(function () {
         Route::get('/', [ProductController::class, 'show'])->name('show');
         Route::patch('/', [ProductController::class, 'update'])->name('update');
         Route::delete('/', [ProductController::class, 'delete'])->name('delete');
