@@ -31,14 +31,7 @@
                                     <td class="text-right align-middle px-2">{{ $product->price }}</td>
                                     <td class="text-right align-middle px-2">{{ $product->stock }}</td>
                                     <td class="d-flex justify-content-center">
-                                        <a class="mx-1 text-success" href="{{ route('products.show', ['product' => $product->id ]) }}"><i class="fas fa-eye"></i></a>
-                                        <a class="mx-1 text-info" href="{{ route('products.edit', ['product' => $product->id ]) }}"><i class="fas fa-edit"></i></a>
-                                        <a class="mx-1 text-danger" href="#" onclick="deleteConfirm('delete-product-{{ $product->id }}', 'Do you want to delete {{ $product->title }} ?')"><i class="fas fa-trash"></i></a>
-                                        <form method="POST" id="delete-product-{{ $product->id }}" action="{{ route('products.delete', ['product' => $product->id]) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
-                                        {{-- <a tabindex="0" class="btn btn-sm btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a> --}}
+                                        @include('products.partials.action', ['product' => $product])
                                     </td>
                                 </tr>
                             @empty

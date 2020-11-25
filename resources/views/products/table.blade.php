@@ -19,8 +19,8 @@
                             <tr>
                                 <th class="text-left px-2" scope="col">No.</th>
                                 <th class="text-left px-2" scope="col">Title</th>
-                                <th class="text-right px-2" scope="col" width="8%">Price</th>
-                                <th class="text-right px-2" scope="col" width="8%">Stock</th>
+                                <th class="text-center" scope="col" width="10%">Price</th>
+                                <th class="text-center" scope="col" width="10%">Stock</th>
                                 <th class="text-center" scope="col" width="15%">Action</th>
                             </tr>
                         </thead>
@@ -41,7 +41,7 @@
             serverSide: true,
             ajax: "{{ route('products.datatable') }}",
             columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false},
                 {data: 'title', name: 'title'},
                 {data: 'price', name: 'email'},
                 {data: 'stock', name: 'stock'},
@@ -51,6 +51,11 @@
                     orderable: false, 
                     searchable: false
                 },
+            ],
+            columnDefs: [
+                { className: "text-right", "targets": [2, 3] },
+                { className: "text-center", "targets": [0, -1] }
+                // { className: "dt-nowrap", "targets": [0,1] }
             ]
         });
     });
