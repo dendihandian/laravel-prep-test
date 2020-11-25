@@ -94,12 +94,11 @@ class ProductController extends Controller
 
     public function factory(Request $request, $count)
     {
-        $request->session()->flash('success', __('Product generated'));
-
         Product::factory([
             'user_id' => Auth::user()->id ?? null
         ])->count($count)->create();
 
+        $request->session()->flash('success', __('Product generated'));
         return redirect()->route('products.index');
     }
 }
