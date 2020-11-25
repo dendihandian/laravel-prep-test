@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Http\Requests\ProductStore;
 use App\Http\Requests\ProductUpdate;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
 {
@@ -33,9 +34,9 @@ class ProductController extends Controller
         return redirect()->route('products.index');
     }
 
-    public function show($productId)
+    public function show(Request $request, $productId)
     {
-        $product = Product::find($productId);
+        $product = $request->get('product') ?? Product::find($productId);
 
         return view('products.show', compact('product'));
     }
@@ -51,7 +52,7 @@ class ProductController extends Controller
     {
         $params = $request->only(['title', 'description', 'price', 'stock']);
 
-        $product = Product::find($productId);
+        $product = $request->get('product') ?? Product::find($productId);
         $product->title = $params['title'];
         $product->description = $params['description'];
         $product->price = $params['price'];
@@ -65,13 +66,31 @@ class ProductController extends Controller
 
     public function delete(Request $request, $productId)
     {
-        $product = Product::find($productId);
+        $product = $request->get('product') ?? Product::find($productId);
         if ($product) $product->delete();
         $request->session()->flash('success', __('Product deleted'));
 
         if ($request->has('redirect_to_index')) return redirect()->route('products.index');
 
         return redirect()->back();
+    }
+
+    public function table()
+    {
+        return view('products.table');
+    }
+
+    public function datatable()
+    {
+        $data = Product::where('user_id', Auth::user()->id)->latest()->get();
+        return Datatables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) {
+                $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                return $actionBtn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 
     public function factory(Request $request, $count)

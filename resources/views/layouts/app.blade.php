@@ -79,5 +79,6 @@
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     {{-- That defer tag somehow block jquery to be loaded --}}
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('script')
 </body>
 </html>
