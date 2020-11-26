@@ -1,4 +1,39 @@
-### Resources List
+### Product List
 GET http://laravel-prep.test/api/products HTTP/1.1
+Accept: application/json
+Content-type: application/json
+
+### Product Create
+POST http://laravel-prep.test/api/products HTTP/1.1
+Accept: application/json
+Content-type: application/json
+
+{
+    "title": "Awesome Product",
+    "description": "The Product Is Really Awesome",
+    "stock": 10,
+    "price": 100
+}
+
+
+### Product Detail
+GET http://laravel-prep.test/api/products/66 HTTP/1.1
+Accept: application/json
+Content-type: application/json
+
+### Product Update
+PATCH http://laravel-prep.test/api/products/922 HTTP/1.1
+Accept: application/json
+Content-type: application/json
+
+{
+    "title": "Amazing Product",
+    "description": "The Product Is Really Amazing",
+    "stock": 11,
+    "price": 111
+}
+
+### Product Delete
+DELETE http://laravel-prep.test/api/products/65 HTTP/1.1
 Accept: application/json
 Content-type: application/json

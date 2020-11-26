@@ -22,6 +22,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('products')->group(function () {
     Route::get('/', [ProductController::class, 'index']);
+    Route::post('/', [ProductController::class, 'store']);
+
+    Route::prefix('{product}')->group(function () {
+        Route::get('/', [ProductController::class, 'show']);
+        Route::patch('/', [ProductController::class, 'update']);
+        Route::delete('/', [ProductController::class, 'delete']);
+    });
 });
 
 Route::prefix('auth')->group(function () {
