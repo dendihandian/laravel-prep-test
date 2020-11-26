@@ -34,7 +34,17 @@ class ProductFactory extends Factory
             'description' => $description,
             'stock' => $stock,
             'price' => $price,
-            'user_id' => User::factory()->create()->id,
+            'user_id' => function () {
+                return User::factory()->create()->id;
+            },
         ];
+
+        /**
+         * I did a little experiment here.
+         * 
+         * If you use function() for returning user id from factory, it will works as expected.
+         * If you dont use function() for returning user id from factory, it will create a different user.
+         * 
+         */
     }
 }
