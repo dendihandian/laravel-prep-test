@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Http\Requests\ProductStore;
 use App\Http\Requests\ProductUpdate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
@@ -94,6 +95,10 @@ class ProductController extends Controller
 
     public function factory(Request $request, $count)
     {
+        Log::debug('ProductController@factory', [
+            'count' => $count
+        ]);
+
         Product::factory([
             'user_id' => Auth::user()->id ?? null
         ])->count($count)->create();
