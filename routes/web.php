@@ -14,26 +14,29 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('products.index');
-});
 
-Auth::routes();
+Route::prefix(LaravelLocalization::setLocale())->middleware(['localeSessionRedirect', 'localizationRedirect'])->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('products.index');
+    });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Auth::routes();
 
-Route::prefix('products')->name('products.')->middleware('auth')->group(function () {
-    Route::get('/', [ProductController::class, 'index'])->name('index');
-    Route::post('/', [ProductController::class, 'store'])->name('store');
-    Route::get('/create', [ProductController::class, 'create'])->name('create');
-    Route::get('/table', [ProductController::class, 'table'])->name('table');
-    Route::get('/datatable', [ProductController::class, 'datatable'])->name('datatable');
-    Route::get('/factory/{count}', [ProductController::class, 'factory'])->name('factory');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::prefix('{product}')->middleware('product_owner')->group(function () {
-        Route::get('/', [ProductController::class, 'show'])->name('show');
-        Route::patch('/', [ProductController::class, 'update'])->name('update');
-        Route::delete('/', [ProductController::class, 'delete'])->name('delete');
-        Route::get('/edit', [ProductController::class, 'edit'])->name('edit');
+    Route::prefix('products')->name('products.')->middleware('auth')->group(function () {
+        Route::get('/', [ProductController::class, 'index'])->name('index');
+        Route::post('/', [ProductController::class, 'store'])->name('store');
+        Route::get('/create', [ProductController::class, 'create'])->name('create');
+        Route::get('/table', [ProductController::class, 'table'])->name('table');
+        Route::get('/datatable', [ProductController::class, 'datatable'])->name('datatable');
+        Route::get('/factory/{count}', [ProductController::class, 'factory'])->name('factory');
+
+        Route::prefix('{product}')->middleware('product_owner')->group(function () {
+            Route::get('/', [ProductController::class, 'show'])->name('show');
+            Route::patch('/', [ProductController::class, 'update'])->name('update');
+            Route::delete('/', [ProductController::class, 'delete'])->name('delete');
+            Route::get('/edit', [ProductController::class, 'edit'])->name('edit');
+        });
     });
 });
