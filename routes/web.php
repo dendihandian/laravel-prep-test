@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Route::prefix(LaravelLocalization::setLocale())->middleware(['localeSessionRedir
 
     Auth::routes();
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
     Route::prefix('products')->name('products.')->middleware('auth')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
@@ -38,5 +39,9 @@ Route::prefix(LaravelLocalization::setLocale())->middleware(['localeSessionRedir
             Route::delete('/', [ProductController::class, 'delete'])->name('delete');
             Route::get('/edit', [ProductController::class, 'edit'])->name('edit');
         });
+    });
+
+    Route::prefix('profile')->name('profile.')->middleware('auth')->group(function () {
+        Route::get('/', [ProfileController::class, 'index'])->name('index');
     });
 });

@@ -30,6 +30,15 @@
                             <div class="d-flex justify-content-start align-items-center">
                                 <input type="checkbox" checked><span class="ml-2">Product Owner Middleware</span>
                             </div>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <input type="checkbox"><span class="ml-2">Product Images and Multiple Upload</span>
+                            </div>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <input type="checkbox"><span class="ml-2">User Profile Management</span>
+                            </div>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <input type="checkbox"><span class="ml-2">User Image and Single Upload</span>
+                            </div>
                         </div>
                         <div class="todos-section col-4 mb-4">
                             <h5>Fundamental API Implementation:</h5>
@@ -62,6 +71,18 @@
                             </div>
                             <div class="d-flex justify-content-start align-items-center">
                                 <input type="checkbox"><span class="ml-2">Laratrust</span>
+                            </div>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <input type="checkbox"><span class="ml-2">Laravel Vouchers</span>
+                            </div>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <input type="checkbox"><span class="ml-2">Laravel Options</span>
+                            </div>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <input type="checkbox"><span class="ml-2">Larecipe</span>
+                            </div>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <input type="checkbox"><span class="ml-2">Laravel Tenancy</span>
                             </div>
                         </div>
                         <div class="todos-section col-4 mb-4">

@@ -10,7 +10,8 @@
                         {{ __('Product List') }}
                     </span>
                     <div>
-                        <a href="{{ route('products.create') }}" class="btn btn-primary">Create Product</a>
+                        <a href="{{ route('products.create') }}" class="btn btn-primary mx-1">Create Product</a>
+                        <a href="{{ route('products.table') }}" class="btn btn-success mx-1">Datatable Version</a>
                     </div>
                 </div>
 
