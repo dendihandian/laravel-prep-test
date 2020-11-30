@@ -18,7 +18,7 @@ class ProductOwner
     public function handle(Request $request, Closure $next)
     {
         // get id from url parameter
-        $id = $request->segment(2);
+        $id = $request->segment(3);
 
         // find product
         $product = \App\Models\Product::where([
