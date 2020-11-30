@@ -41,12 +41,12 @@
                             </div>
                         </div>
                         <div class="todos-section col-4 mb-4">
-                            <h5>Package Implementation:</h5>
+                            <h5>Composer Package Implementation:</h5>
                             <div class="d-flex justify-content-start align-items-center">
                                 <input type="checkbox" checked><span class="ml-2">Laravel Passport</span>
                             </div>
                             <div class="d-flex justify-content-start align-items-center">
-                                <input type="checkbox" checked><span class="ml-2">Yajra Datatables</span>
+                                <input type="checkbox" checked><span class="ml-2">Yajra Datatables Oracle</span>
                             </div>
                             <div class="d-flex justify-content-start align-items-center">
                                 <input type="checkbox" checked><span class="ml-2">Laravel-Localization</span>
@@ -62,6 +62,24 @@
                             </div>
                             <div class="d-flex justify-content-start align-items-center">
                                 <input type="checkbox"><span class="ml-2">Laratrust</span>
+                            </div>
+                        </div>
+                        <div class="todos-section col-4 mb-4">
+                            <h5>NodeJS Package Implementation:</h5>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <input type="checkbox" checked><span class="ml-2">Datatables</span>
+                            </div>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <input type="checkbox" checked><span class="ml-2">Font Awesome</span>
+                            </div>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <input type="checkbox" checked><span class="ml-2">Sweet Alert2</span>
+                            </div>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <input type="checkbox"><span class="ml-2">ChartJS</span>
+                            </div>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <input type="checkbox"><span class="ml-2">jQuery UI DatePicker</span>
                             </div>
                         </div>
                     </div>
