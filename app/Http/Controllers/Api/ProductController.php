@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductStore;
 use App\Http\Requests\ProductUpdate;
+use App\Http\Resources\ProductCollection;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -12,8 +14,17 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
-        return response()->json(['data' => $products], 200);
+        $products = Product::paginate();
+
+        // var_dump($products->toArray());
+        // die;
+
+        return response()->json([
+            'data' => new ProductCollection($products),
+            'metadata' => [
+                // 'current_page' => $products->current_page(),
+            ],
+        ], 200);
     }
 
     public function store(ProductStore $request)
@@ -25,7 +36,7 @@ class ProductController extends Controller
 
         return response()->json([
             'message' => 'Product created',
-            'data' => $product,
+            'data' => new ProductResource($product),
         ], 201);
     }
 
@@ -33,7 +44,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         return response()->json([
-            'data' => $product,
+            'data' => new ProductResource($product),
         ], 200);
     }
 
@@ -48,7 +59,7 @@ class ProductController extends Controller
 
         return response()->json([
             'message' => 'Product updated',
-            'data' => $product,
+            'data' => new ProductResource($product),
         ], 200);
     }
 

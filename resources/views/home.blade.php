@@ -48,6 +48,9 @@
                             <div class="d-flex justify-content-start align-items-center">
                                 <input type="checkbox" checked><span class="ml-2">Login and Register API Endpoint</span>
                             </div>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <input type="checkbox"><span class="ml-2">JSON Resource for Product List and Detail</span>
+                            </div>
                         </div>
                         <div class="todos-section col-4 mb-4">
                             <h5>Composer Package Implementation:</h5>
