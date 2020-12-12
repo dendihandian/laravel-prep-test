@@ -14,13 +14,11 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table id="products-table" class="table table-sm table-bordered">
+                    <table id="posts-table" class="table table-sm table-bordered">
                         <thead>
                             <tr>
-                                <th class="text-left px-2" scope="col">No.</th>
                                 <th class="text-left px-2" scope="col">Title</th>
-                                <th class="text-center" scope="col" width="10%">Price</th>
-                                <th class="text-center" scope="col" width="10%">Stock</th>
+                                <th class="text-center" scope="col">Published</th>
                                 <th class="text-center" scope="col" width="15%">Action</th>
                             </tr>
                         </thead>
@@ -36,15 +34,13 @@
 @section('script')
 <script>
     $(function () {
-        var table = $('#products-table').DataTable({
+        var table = $('#posts-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('products.datatable') }}",
+            ajax: "{{ route('posts.datatable') }}",
             columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                 {data: 'title', name: 'title'},
-                {data: 'price', name: 'price'},
-                {data: 'stock', name: 'stock'},
+                {data: 'published', name: 'published'},
                 {
                     data: 'action', 
                     name: 'action', 
@@ -53,9 +49,7 @@
                 },
             ],
             columnDefs: [
-                { className: "text-right", "targets": [2, 3] },
-                { className: "text-center", "targets": [0, -1] }
-                // { className: "dt-nowrap", "targets": [0,1] }
+                { className: "text-center", "targets": [-1, -2] }
             ]
         });
     });

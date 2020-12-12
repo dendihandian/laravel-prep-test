@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,12 @@ Route::prefix(LaravelLocalization::setLocale())->middleware(['localeSessionRedir
             Route::delete('/', [ProductController::class, 'delete'])->name('delete');
             Route::get('/edit', [ProductController::class, 'edit'])->name('edit');
         });
+    });
+
+    Route::prefix('posts')->name('posts.')->middleware('auth')->group(function () {
+        Route::get('/', [PostController::class, 'index'])->name('index');
+        Route::get('/datatable', [PostController::class, 'datatable'])->name('datatable');
+        Route::get('/factory/{count}', [PostController::class, 'factory'])->name('factory');
     });
 
     Route::prefix('profile')->name('profile.')->middleware('auth')->group(function () {
