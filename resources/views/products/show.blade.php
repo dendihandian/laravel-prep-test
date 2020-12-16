@@ -13,10 +13,10 @@
 
                 <div class="card-body">
 
-                    @include('products.form', ['readOnly' => true])
+                    @include('products.partials.form', ['readOnly' => true])
 
                     <div class="mt-4">
-                        <a class="btn btn-info text-white" href="{{ route('products.index') }}">{{ __('Back to list') }}</a>
+                        <a class="text-white btn btn-info" href="{{ route('products.index') }}">{{ __('Back to list') }}</a>
                         <a class="btn btn-success" href="{{ route('products.edit', ['product' => $product->id ?? '']) }}">{{ __('Edit') }}</a>
                         <a class="btn btn-danger" onclick="deleteConfirm('delete-product-{{ $product->id }}', 'Do you want to delete {{ $product->title }} ?')">{{ __('Delete') }}</a>
                         <form method="POST" id="delete-product-{{ $product->id }}" action="{{ route('products.delete', ['product' => $product->id]) }}">

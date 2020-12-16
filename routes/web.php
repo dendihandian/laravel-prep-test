@@ -30,7 +30,6 @@ Route::prefix(LaravelLocalization::setLocale())->middleware(['localeSessionRedir
         Route::get('/', [ProductController::class, 'index'])->name('index');
         Route::post('/', [ProductController::class, 'store'])->name('store');
         Route::get('/create', [ProductController::class, 'create'])->name('create');
-        Route::get('/table', [ProductController::class, 'table'])->name('table');
         Route::get('/datatable', [ProductController::class, 'datatable'])->name('datatable');
         Route::get('/factory/{count}', [ProductController::class, 'factory'])->name('factory');
 

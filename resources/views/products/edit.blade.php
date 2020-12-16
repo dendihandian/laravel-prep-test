@@ -16,10 +16,10 @@
                         @csrf
                         @method('PATCH')
 
-                        @include('products.form')
+                        @include('products.partials.form')
 
                         <div class="mt-4">
-                            <a class="btn btn-info text-white" href="{{ route('products.index') }}">{{ __('Back to list') }}</a>
+                            <a class="text-white btn btn-info" href="{{ route('products.index') }}">{{ __('Back to list') }}</a>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>

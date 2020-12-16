@@ -10,37 +10,22 @@
                         {{ __('Product List') }}
                     </span>
                     <div>
-                        <a href="{{ route('products.create') }}" class="btn btn-primary mx-1">Create Product</a>
-                        <a href="{{ route('products.table') }}" class="btn btn-success mx-1">Datatable Version</a>
+                        <a href="{{ route('products.create') }}" class="mx-1 btn btn-primary">Create Product</a>
                     </div>
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-sm table-bordered">
+                    <table id="products-table" class="table table-sm table-bordered">
                         <thead>
                             <tr>
-                                <th class="text-left px-2" scope="col">Title</th>
-                                <th class="text-right px-2" scope="col" width="8%">Price</th>
-                                <th class="text-right px-2" scope="col" width="8%">Stock</th>
+                                <th class="px-2 text-left" scope="col">No.</th>
+                                <th class="px-2 text-left" scope="col">Title</th>
+                                <th class="text-center" scope="col" width="10%">Price</th>
+                                <th class="text-center" scope="col" width="10%">Stock</th>
                                 <th class="text-center" scope="col" width="15%">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @forelse ($products as $product)
-                                <tr>
-                                    <td class="text-left px-2 align-middle">{{ $product->title }}</td>
-                                    <td class="text-right align-middle px-2">{{ $product->price }}</td>
-                                    <td class="text-right align-middle px-2">{{ $product->stock }}</td>
-                                    <td class="d-flex justify-content-center">
-                                        @include('products.partials.action', ['product' => $product])
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-center" colspan="4">{{ __('No product available') }}</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                     <div class="d-flex align-items-center justify-content-end">{{ $products->links() }}</div>
                 </div>
@@ -48,4 +33,33 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    $(function () {
+        var table = $('#products-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('products.datatable') }}",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                {data: 'title', name: 'title'},
+                {data: 'price', name: 'price'},
+                {data: 'stock', name: 'stock'},
+                {
+                    data: 'action', 
+                    name: 'action', 
+                    orderable: false, 
+                    searchable: false
+                },
+            ],
+            columnDefs: [
+                { className: "text-right", "targets": [2, 3] },
+                { className: "text-center", "targets": [0, -1] }
+                // { className: "dt-nowrap", "targets": [0,1] }
+            ]
+        });
+    });
+</script>
 @endsection
