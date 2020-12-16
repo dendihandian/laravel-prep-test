@@ -87,7 +87,7 @@ class ProductController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($product) {
-                return view('products.partials.action', ['product' => $product]);
+                return view('products.partials.table-action', ['product' => $product]);
             })
             ->rawColumns(['action'])
             ->make(true);
