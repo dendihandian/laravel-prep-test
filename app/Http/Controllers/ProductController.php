@@ -8,6 +8,8 @@ use App\Http\Requests\ProductStore;
 use App\Http\Requests\ProductUpdate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
@@ -26,10 +28,20 @@ class ProductController extends Controller
 
     public function store(ProductStore $request)
     {
+        // dd($request->all());
         $params = $request->only(['title', 'description', 'price', 'stock']);
         $params['user_id'] = Auth::user()->id ?? null;
 
-        Product::create($params);
+        $product = Product::create($params);
+
+        if ($request->hasFile('image')) {
+            $path = Storage::putFile("products/{$product->id}/images/", $request->file('image'));
+            $explodedPath = explode('/', $path);
+            $product->images()->create([
+                'filename' => end($explodedPath),
+                'path_to_file' => $path,
+            ]);
+        }
 
         $request->session()->flash('success', __('Product created'));
         return redirect()->route('products.index');
@@ -52,14 +64,11 @@ class ProductController extends Controller
     public function update(ProductUpdate $request, $productId)
     {
         $params = $request->only(['title', 'description', 'price', 'stock']);
-
         $product = $request->get('product') ?? Product::find($productId);
-        $product->title = $params['title'];
-        $product->description = $params['description'];
-        $product->price = $params['price'];
-        $product->stock = $params['stock'];
-        $product->user_id = Auth::user()->id ?? null;
-        $product->save();
+
+        $product->update(array_merge($params, [
+            'user_id' => Auth::user()->id ?? null,
+        ]));
 
         $request->session()->flash('success', __('Product updated'));
         return redirect()->back();
@@ -105,5 +114,18 @@ class ProductController extends Controller
 
         $request->session()->flash('success', __('Product generated'));
         return redirect()->route('products.index');
+    }
+
+    public function image(Request $request, $productId)
+    {
+        $product = Product::with('images')->find($productId);
+        $path = optional($product->images->first())->path_to_file;
+
+        if (!empty($path) && Storage::exists($path)) {
+            return response()->file(storage_path('app/' . $path));
+        } else {
+            $request->session()->flash('error', __('Image not found'));
+            return redirect()->back();
+        }
     }
 }

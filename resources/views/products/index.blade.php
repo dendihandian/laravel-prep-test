@@ -27,7 +27,6 @@
                         </thead>
                         <tbody></tbody>
                     </table>
-                    <div class="d-flex align-items-center justify-content-end">{{ $products->links() }}</div>
                 </div>
             </div>
         </div>

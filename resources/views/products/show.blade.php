@@ -13,7 +13,7 @@
 
                 <div class="card-body">
 
-                    @include('products.partials.form', ['readOnly' => true])
+                    @include('products.partials.form', ['readonly' => true])
 
                     <div class="mt-4">
                         <a class="text-white btn btn-info" href="{{ route('products.index') }}">{{ __('Back to list') }}</a>

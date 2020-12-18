@@ -37,6 +37,7 @@ Route::prefix(LaravelLocalization::setLocale())->middleware(['localeSessionRedir
             Route::get('/', [ProductController::class, 'show'])->name('show');
             Route::patch('/', [ProductController::class, 'update'])->name('update');
             Route::delete('/', [ProductController::class, 'delete'])->name('delete');
+            Route::get('/image', [ProductController::class, 'image'])->name('image');
             Route::get('/edit', [ProductController::class, 'edit'])->name('edit');
         });
     });

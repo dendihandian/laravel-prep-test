@@ -12,4 +12,9 @@ class Product extends Model implements Auditable
     use HasFactory, AuditableTrait;
 
     protected $guarded = [];
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
 }
