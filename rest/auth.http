@@ -22,10 +22,10 @@ Accept: application/json
 GET http://laravel-prep.test/api/auth/user HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-# Authorization: Bearer YOUR_TOKEN
+Authorization: Bearer YOUR_TOKEN
 
 ### Logout
 POST http://laravel-prep.test/api/auth/logout HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-# Authorization: Bearer YOUR_TOKEN
+Authorization: Bearer YOUR_TOKEN
